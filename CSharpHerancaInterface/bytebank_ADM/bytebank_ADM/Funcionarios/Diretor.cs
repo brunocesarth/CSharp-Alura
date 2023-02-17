@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace bytebank_ADM.Funcionarios
+﻿namespace bytebank_ADM.Funcionarios
 {
-    public class Diretor
+    public class Diretor : Funcionario
     {
-        public string Nome { get; set; }
-        public string Cpf { get; set; }
-        public double Salario { get; set; }
 
-        public double GetBonificacao()
+        public override double GetBonificacao()
         {
-            return Salario;
+            return Salario + base.GetBonificacao();
+        }
+
+        public override double PremioSemestral()
+        {
+            return Salario + base.PremioSemestral();
         }
     }
 }
+// base me dá acesso ao atributo ou metodo da superclasse(funcionário)

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace bytebank_ADM.Funcionarios
+﻿namespace bytebank_ADM.Funcionarios
 {
     public class Funcionario
     {
@@ -12,9 +6,15 @@ namespace bytebank_ADM.Funcionarios
         public string Cpf { get; set; }
         public double Salario { get; set; }
 
-        public double GetBonificacao()
+
+        public virtual double GetBonificacao()
         {
             return Salario * 0.1;
+        }
+
+        public virtual double PremioSemestral()
+        {
+            return Salario * 0.2;
         }
     }
 }
