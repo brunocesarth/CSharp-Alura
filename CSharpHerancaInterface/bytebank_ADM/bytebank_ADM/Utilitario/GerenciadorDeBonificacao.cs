@@ -12,10 +12,5 @@ namespace bytebank_ADM.Utilitario
         {
             TotalDeBonificacao += funcionario.GetBonificacao();
         }
-
-        public void RegistraPremio(Funcionario funcionario)
-        {
-            TotalPremioSemestral += funcionario.PremioSemestral();
-        }
     }
 }

@@ -1,20 +1,23 @@
-﻿namespace bytebank_ADM.Funcionarios
+﻿using System;
+
+namespace bytebank_ADM.Funcionarios
 {
-    public class Funcionario
+    public abstract class Funcionario
     {
         public string Nome { get; set; }
-        public string Cpf { get; set; }
-        public double Salario { get; set; }
+        public string Cpf { get; private set; }
+        public double Salario { get; protected set; }
+        public static int TotalDeFuncionarios { get; private set; }
 
-
-        public virtual double GetBonificacao()
+        public Funcionario(string cpf, double salario)
         {
-            return Salario * 0.1;
+            Cpf = cpf;
+            Salario = salario;
+            TotalDeFuncionarios++;
         }
 
-        public virtual double PremioSemestral()
-        {
-            return Salario * 0.2;
-        }
+        public abstract double GetBonificacao();
+
+        public abstract void AumentarSalario();
     }
 }
