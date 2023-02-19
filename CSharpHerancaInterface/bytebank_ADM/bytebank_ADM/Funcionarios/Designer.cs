@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace bytebank_ADM.Funcionarios
 {
-    class Designer : Funcionario
+    public class Designer : Funcionario
     {
         public Designer(string cpf) : base(cpf, 3000) { }
         public override double GetBonificacao()
