@@ -2,6 +2,7 @@
 using bytebank_ATENDIMENTO.bytebanki.Util;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 
 Console.WriteLine("Boas vindas ao ByteBank, Atendimento.");
 #region Exemplos Arrays em C#
@@ -105,7 +106,14 @@ void TestaArrayDeContasCorrentes()
 //TestaArrayDeContasCorrentes();
 #endregion
 
-ArrayList _listaDeContas = new ArrayList();
+List<ContaCorrente> _listaDeContas = new List<ContaCorrente>()
+{
+    new ContaCorrente(95, "123456-X"){Saldo = 100},
+    new ContaCorrente(95, "951258-X"){Saldo = 200},
+    new ContaCorrente(94, "987321-W"){Saldo = 60}
+};
+
+//AtendimentoCliente();
 
 void AtendimentoCliente()
 {
@@ -129,11 +137,43 @@ void AtendimentoCliente()
             case '1':
                 CadastrarConta();
                 break;
+            case '2':
+                ListarConta();
+                break;
             default:
                 Console.WriteLine("Opção não implementada.");
                 break;
         }
 
+    }
+}
+
+void ListarConta()
+{
+    Console.Clear();
+    Console.WriteLine("=============================");
+    Console.WriteLine("===    LISTA DE CONTAS    ===");
+    Console.WriteLine("=============================");
+    Console.WriteLine("\n");
+    if (_listaDeContas.Count <= 0)
+    {
+        Console.WriteLine("... Não há contas cadastradas! ...");
+        Console.ReadKey();
+        return;
+    }
+    else
+    {
+        foreach (ContaCorrente item in _listaDeContas)
+        {
+            Console.WriteLine("===  DADOS DA CONTA  ===");
+            Console.WriteLine("Número da Conta: " + item.Conta);
+            Console.WriteLine("Saldo da Conta: " + item.Saldo);
+            Console.WriteLine("Titular da Conta: " + item.Titular.Nome);
+            Console.WriteLine("CPF do Titular : " + item.Titular.Cpf);
+            Console.WriteLine("Profissão do Titular: " + item.Titular.Profissao);
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+            Console.ReadKey();
+        }
     }
 }
 
@@ -166,6 +206,47 @@ void CadastrarConta()
     conta.Titular.Profissao = Console.ReadLine();
 
     _listaDeContas.Add(conta);
+    //_listaDeContas.Add("Olá mundo!");
+
     Console.WriteLine("... Conta cadastrada com sucesso! ...");
     Console.ReadKey();
 }
+
+List<ContaCorrente> _listaDeContas2 = new List<ContaCorrente>()
+{
+    new ContaCorrente(874, "5679787-A"),
+    new ContaCorrente(874, "4456668-B"),
+    new ContaCorrente(874, "7781438-C")
+};
+
+List<ContaCorrente> _listaDeContas3 = new List<ContaCorrente>()
+{
+    new ContaCorrente(951, "5679787-E"),
+    new ContaCorrente(321, "4456668-F"),
+    new ContaCorrente(719, "7781438-G")
+};
+
+_listaDeContas2.AddRange(_listaDeContas3);
+_listaDeContas2.Reverse();
+
+for (int i = 0; i < _listaDeContas2.Count; i++)
+{
+    Console.WriteLine($"Indice [{i}] = Conta[{_listaDeContas2[i].Conta}]");
+}
+
+Console.WriteLine("\n\n");
+
+var range = _listaDeContas3.GetRange(0, 1);
+for (int i = 0; i < range.Count; i++)
+{
+    Console.WriteLine($"Indice [{i}] = Conta[{range[i].Conta}]");
+}
+
+Console.WriteLine("\n\n");
+
+_listaDeContas3.Clear();
+for (int i = 0; i < _listaDeContas3.Count; i++)
+{
+    Console.WriteLine($"Indice [{i}] = Conta[{_listaDeContas3[i].Conta}]");
+}
+
