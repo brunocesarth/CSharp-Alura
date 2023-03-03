@@ -18,7 +18,14 @@ namespace bytebank.Modelos.Conta
                 {
                     Console.WriteLine("Nome do titular precisa ter pelo menos 3 caracteres.");
                 }
+                _nome = value;
             }
+        }
+
+        public Cliente(string cpf, string nome)
+        {
+            Cpf = cpf;
+            Nome = nome;
         }
 
         public string Profissao { get; set; }
