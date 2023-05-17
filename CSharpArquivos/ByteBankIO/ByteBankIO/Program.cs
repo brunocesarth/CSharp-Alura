@@ -1,28 +1,26 @@
-﻿using System;
+﻿using ByteBankIO;
+using System;
 using System.IO;
 
 partial class Program
 {
     static void Main(string[] args)
     {
-        var enderecoDoArquivo = "contas.txt";
+        var linhas = File.ReadAllLines("contas.txt");
+        Console.WriteLine(linhas.Length);
 
-        using(var fluxoDeArquivo = new FileStream(enderecoDoArquivo, FileMode.Open))
-        {
-            var leitor = new StreamReader(fluxoDeArquivo);
+        //foreach(var linha in linhas)
+        //{
+        //    Console.WriteLine(linha);
+        //}
 
-            // var linha = leitor.ReadLine();
+        var bytesArquivo = File.ReadAllBytes("contas.txt");
+        Console.WriteLine($"Arquivo contas.txt possui {bytesArquivo.Length} bytes");
 
-            // var texto = leitor.ReadToEnd();
+        File.WriteAllText("escrevendoComAClasseFile.txt", "Testando File.WriteAllText");
 
-            //var numero = leitor.Read(); //Trás o primeiro byte do arquivo
+        Console.WriteLine("Aplicação Finalizada ...");
 
-            while (!leitor.EndOfStream)
-            {
-                var linha = leitor.ReadLine();
-                Console.WriteLine(linha);
-            }
-        }
         Console.ReadLine();
     }
 }
