@@ -1,11 +1,13 @@
 ﻿using bytebank.Modelos.Conta;
 using bytebank_ATENDIMENTO.bytebank.Exceptions;
 using Newtonsoft.Json;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace bytebank_ATENDIMENTO.bytebank.Atendimento
 {
-    #nullable disable
-    internal  class ByteBankAtendimento
+#nullable disable
+    internal class ByteBankAtendimento
     {
 
         private List<ContaCorrente> _listaDeContas = new List<ContaCorrente>(){
@@ -13,7 +15,7 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
           new ContaCorrente(95, "951258-X"){Saldo=200,Titular = new Cliente{Cpf="22222",Nome ="Pedro"}},
           new ContaCorrente(94, "987321-W"){Saldo=60,Titular = new Cliente{Cpf="33333",Nome ="Marisa"}}
         };
-           
+
 
         public void AtendimentoCliente()
         {
@@ -60,7 +62,7 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
                             break;
                         case '5':
                             PesquisarContas();
-                            break;                  
+                            break;
                         case '6':
                             ExportarContas();
                             break;
@@ -94,15 +96,15 @@ namespace bytebank_ATENDIMENTO.bytebank.Atendimento
             }
             else
             {
-                string json = JsonConvert.SerializeObject(_listaDeContas,
-                    Formatting.Indented);
+                var contas = new XmlSerializer(typeof(List<ContaCorrente>));
                 try
                 {
-                    FileStream fs = new FileStream(@"c:\temp\export\contas.json", 
-                        FileMode.Create);
-                    using (StreamWriter streamwriter = new StreamWriter(fs))
+                    FileStream fs = new FileStream(@"c:\temp\export\contas.xml",
+                         FileMode.Create);
+
+                    using (StreamWriter stream = new StreamWriter(fs))
                     {
-                        streamwriter.WriteLine(json);
+                        contas.Serialize(stream, _listaDeContas);
                     }
                     Console.WriteLine(@"Arquivo salvo em c:\tmp\export\");
                     Console.ReadKey();
