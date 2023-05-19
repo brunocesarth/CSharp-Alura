@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Reference Include="bytebank_GeradorChavePix">
-      <HintPath>C:\Users\uidr1288\Desktop\bytebank_GeradorChavePix\bytebank_GeradorChavePix\bin\Debug\net6.0\bytebank_GeradorChavePix.dll</HintPath>
+      <HintPath>..\..\bytebank_GeradorChavePix\bytebank_GeradorChavePix\bin\Debug\net6.0\bytebank_GeradorChavePix.dll</HintPath>
     </Reference>
   </ItemGroup>
 
